@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Pembelajaran Interaktif Informatika Kelas 9</title>
+  <!-- Tailwind CSS & FontAwesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#0284c7',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @media print {
+      body * { visibility: hidden; }
+      #printable-certificate, #printable-certificate * { visibility: visible; }
+      #printable-certificate { position: absolute; left: 0; top: 0; width: 100%; height: 100%; margin: 0; padding: 0; }
+    }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col selection:bg-sky-500 selection:text-white">
+
+  <!-- HEADER SEKSI -->
+  <header class="bg-gradient-to-r from-slate-900 via-sky-900 to-indigo-900 text-white shadow-xl sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-sky-800/60 pb-4">
+        <div class="flex items-center space-x-4">
+          <div class="p-3 bg-sky-500/20 rounded-2xl border border-sky-400/30 backdrop-blur-md">
+            <i class="fa-solid fa-laptop-code text-3xl text-sky-400"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="bg-sky-500/30 text-sky-200 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-sky-400/30">Mata Pelajaran</span>
+              <span class="bg-indigo-500/30 text-indigo-200 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-indigo-400/30">Kelas IX / Fase D</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight mt-1 text-white">INFORMATIKA</h1>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-3 bg-white/10 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/10">
+          <div class="w-10 h-10 rounded-full bg-sky-500 flex items-center justify-center font-bold text-lg text-white shadow-inner">
+            AH
+          </div>
+          <div>
+            <p class="text-xs text-sky-200 font-medium">Guru Pengampu</p>
+            <p class="text-sm font-bold text-white">Ahmad Hudzaifah, S.Kom</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-3 flex items-center gap-2 text-xs sm:text-sm text-sky-200">
+        <i class="fa-solid fa-book-open text-sky-400"></i>
+        <span class="font-semibold text-white">Topik Pembelajaran:</span>
+        <span class="truncate">Berpikir Komputasional &amp; Teknologi Informasi dan Komunikasi</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGASI TAB BAR -->
+  <nav class="bg-white border-b border-slate-200 shadow-sm sticky top-[105px] md:top-[93px] z-30">
+    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+      <div class="flex space-x-1 sm:space-x-2 overflow-x-auto py-2 custom-scrollbar text-xs sm:text-sm font-medium">
+        
+        <button onclick="switchTab('cp')" id="tab-cp" class="nav-btn active-tab px-3 py-2.5 rounded-lg flex items-center gap-2 whitespace-nowrap transition-all duration-200 bg-sky-600 text-white font-semibold shadow-md">
+          <i class="fa-solid fa-bullseye"></i> 1. Capaian Pembelajaran
+        </button>
+
+        <button onclick="switchTab('tik')" id="tab-tik" class="nav-btn px-3 py-2.5 rounded-lg flex items-center gap-2 whitespace-nowrap transition-all duration-200 text-slate-600 hover:bg-slate-100 hover:text-sky-600">
+          <i class="fa-solid fa-network-wired"></i> 2. Materi TIK &amp; BK
+        </button>
+
+        <button onclick="switchTab('perkantoran')" id="tab-perkantoran" class="nav-btn px-3 py-2.5 rounded-lg flex items-center gap-2 whitespace-nowrap transition-all duration-200 text-slate-600 hover:bg-slate-100 hover:text-sky-600">
+          <i class="fa-solid fa-file-invoice"></i> 3. Aplikasi Perkantoran
+        </button>
+
+        <button onclick="switchTab('blog')" id="tab-blog" class="nav-btn px-3 py-2.5 rounded-lg flex items-center gap-2 whitespace-nowrap transition-all duration-200 text-slate-600 hover:bg-slate-100 hover:text-sky-600">
+          <i class="fa-solid fa-blog"></i> 4. Membuat Blog
+        </button>
+
+        <button onclick="switchTab('vlog')" id="tab-vlog" class="nav-btn px-3 py-2.5 rounded-lg flex items-center gap-2 whitespace-nowrap transition-all duration-200 text-slate-600 hover:bg-slate-100 hover:text-sky-600">
+          <i class="fa-solid fa-video"></i> 5. Membuat Video Blog
+        </button>
+
+        <button onclick="switchTab('evaluasi')" id="tab-evaluasi" class="nav-btn px-3 py-2.5 rounded-lg flex items-center gap-2 whitespace-nowrap transition-all duration-200 text-slate-600 hover:bg-slate-100 hover:text-sky-600">
+          <i class="fa-solid fa-graduation-cap"></i> 6. Evaluasi &amp; Sertifikat
+        </button>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- KONTEN UTAMA -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- TAB 1: CAPAIAN PEMBELAJARAN -->
+    <section id="content-cp" class="tab-content space-y-6">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center space-x-3 mb-6 border-b border-slate-100 pb-4">
+          <div class="p-3 bg-sky-100 rounded-xl text-sky-600"><i class="fa-solid fa-bullseye text-2xl"></i></div>
+          <div>
+            <h2 class="text-xl font-bold text-slate-900">Capaian Pembelajaran (CP) Informatika Kelas 9</h2>
+            <p class="text-sm text-slate-500">Fase D - Kurikulum Merdeka SMP/MTs</p>
+          </div>
+        </div>
+
+        <div class="prose max-w-none text-slate-600 space-y-4">
+          <div class="bg-sky-50 border-l-4 border-sky-500 p-4 rounded-r-lg">
+            <h3 class="font-bold text-sky-900 text-base mb-1">Capaian Umum Fase D:</h3>
+            <p class="text-sm leading-relaxed text-sky-800">
+              Pada akhir Fase D, peserta didik mampu menerapkan berpikir komputasional untuk menghasilkan beberapa solusi dalam menyelesaikan persoalan dengan data diskrit bervolume kecil, mengintegrasikan konten aplikasi perkantoran, memanfaatkan media digital berupa blog dan video blog untuk mengomunikasikan gagasan serta informasi secara terstruktur, kreatif, etis, dan aman.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6 mt-6">
+            <div class="p-5 border border-slate-200 rounded-xl bg-slate-50">
+              <h4 class="font-bold text-slate-800 text-lg flex items-center gap-2 mb-3">
+                <i class="fa-solid fa-brain text-indigo-600"></i> Elemen: Berpikir Komputasional (BK)
+              </h4>
+              <ul class="list-disc list-inside space-y-2 text-sm text-slate-600">
+                <li>Menerapkan 4 pilar Berpikir Komputasional (Dekomposisi, Pengenalan Pola, Abstraksi, Algoritma) untuk memecahkan masalah komputasi.</li>
+                <li>Menganalisis efisiensi algoritma dalam penyelesaian persoalan logis sehari-hari.</li>
+                <li>Memahami struktur data sederhana (stack, queue, tree, graph) untuk pemodelan informasi.</li>
+              </ul>
+            </div>
+
+            <div class="p-5 border border-slate-200 rounded-xl bg-slate-50">
+              <h4 class="font-bold text-slate-800 text-lg flex items-center gap-2 mb-3">
+                <i class="fa-solid fa-laptop text-emerald-600"></i> Elemen: Teknologi Informasi &amp; Komunikasi (TIK)
+              </h4>
+              <ul class="list-disc list-inside space-y-2 text-sm text-slate-600">
+                <li>Mengintegrasikan obyek dan konten antar-aplikasi perkantoran (pengolah kata, angka, dan presentasi).</li>
+                <li>Mengembangkan artefak komputasional berupa **Blog Sederhana** sebagai ruang portofolio digital.</li>
+                <li>Merancang dan membuat **Video Blog (Vlog)** interaktif untuk publikasi karya secara komunikatif dan beretika.</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 class="font-bold text-slate-800 text-lg mt-8 mb-4">Alur Tujuan Pembelajaran (ATP) Berdasarkan Materi:</h3>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-lg shadow-xs">
+              <span class="bg-sky-600 text-white font-bold px-2.5 py-1 rounded-md text-xs">TP 1</span>
+              <div>
+                <p class="font-semibold text-slate-800 text-sm">Pemahaman TIK &amp; Berpikir Komputasional</p>
+                <p class="text-xs text-slate-500">Siswa mampu menguraikan prinsip berpikir komputasional, tren teknologi TIK, serta etika dan keamanan data digital.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-lg shadow-xs">
+              <span class="bg-sky-600 text-white font-bold px-2.5 py-1 rounded-md text-xs">TP 2</span>
+              <div>
+                <p class="font-semibold text-slate-800 text-sm">Integrasi Aplikasi Perkantoran</p>
+                <p class="text-xs text-slate-500">Siswa mampu mengoperasikan aplikasi Pengolah Kata, Pengolah Angka, dan Pembuat Presentasi serta mengintegrasikannya (Mail Merge, Object Linking &amp; Embedding).</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-lg shadow-xs">
+              <span class="bg-sky-600 text-white font-bold px-2.5 py-1 rounded-md text-xs">TP 3</span>
+              <div>
+                <p class="font-semibold text-slate-800 text-sm">Pengembangan Media Blog</p>
+                <p class="text-xs text-slate-500">Siswa mampu mempraktikkan tahapan pembuatan blog sederhana dari pendaftaran hingga penerbitan artikel bertema pendidikan secara terstruktur.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-lg shadow-xs">
+              <span class="bg-sky-600 text-white font-bold px-2.5 py-1 rounded-md text-xs">TP 4</span>
+              <div>
+                <p class="font-semibold text-slate-800 text-sm">Produksi Konten Video Blog (Vlog)</p>
+                <p class="text-xs text-slate-500">Siswa mampu memproduksi vlog pembelajaran melalui 5 tahapan utama (Rencana, Persiapan, Tampilan &amp; Rekam, Sunting, Bagikan).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: MATERI TIK & BERPIKIR KOMPUTASIONAL -->
+    <section id="content-tik" class="tab-content hidden space-y-6">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center space-x-3 mb-6 border-b border-slate-100 pb-4">
+          <div class="p-3 bg-indigo-100 rounded-xl text-indigo-600"><i class="fa-solid fa-network-wired text-2xl"></i></div>
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900">Materi 1: Berpikir Komputasional &amp; Teknologi Informasi Komunikasi</h2>
+            <p class="text-sm text-slate-500">Penjelasan Lengkap, Konsep Dasar, dan Contoh Kasus Nyata</p>
+          </div>
+        </div>
+
+        <div class="space-y-8 text-slate-700 leading-relaxed">
+          
+          <!-- Sub Bagian 1 -->
+          <div>
+            <h3 class="text-xl font-bold text-indigo-900 border-b-2 border-indigo-200 pb-2 mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-gears text-indigo-600"></i> 1. Landasan Berpikir Komputasional (Computational Thinking)
+            </h3>
+            <p class="mb-4">
+              <strong>Berpikir Komputasional (BK)</strong> adalah proses berpikir berbasis pemecahan masalah (problem-solving) yang tidak hanya berlaku saat menulis kode program komputer, melainkan untuk menyelesaikan persoalan kehidupan sehari-hari secara sistematis, efisien, dan optimal. 
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-4 my-4">
+              <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                <span class="font-bold text-indigo-700 block mb-1">A. Dekomposisi (Decomposition)</span>
+                <p class="text-sm">Memecah masalah kompleks yang besar menjadi bagian-bagian kecil yang lebih sederhana dan mudah dikelola.</p>
+              </div>
+              <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                <span class="font-bold text-indigo-700 block mb-1">B. Pengenalan Pola (Pattern Recognition)</span>
+                <p class="text-sm">Mengenali kesamaan, tren, atau pola dari masalah-masalah yang pernah diselesaikan sebelumnya.</p>
+              </div>
+              <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                <span class="font-bold text-indigo-700 block mb-1">C. Abstraksi (Abstraction)</span>
+                <p class="text-sm">Fokus hanya pada informasi penting dan mengabaikan rincian/detail yang tidak relevan dengan solusi.</p>
+              </div>
+              <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                <span class="font-bold text-indigo-700 block mb-1">D. Algoritma (Algorithm)</span>
+                <p class="text-sm">Mengembangkan langkah-langkah instruksi terurut, logis, dan presisi untuk menyelesaikan masalah.</p>
+              </div>
+            </div>
+
+            <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-5 my-4">
+              <h4 class="font-bold text-indigo-900 text-sm uppercase tracking-wider mb-2"><i class="fa-solid fa-lightbulb text-amber-500"></i> Contoh Penerapan Nyata Berpikir Komputasional:</h4>
+              <p class="text-sm font-semibold text-slate-800">Studi Kasus: Menyusun Jadwal Belajar Persiapan Ujian Sekolah</p>
+              <ul class="list-disc list-inside text-sm text-slate-700 space-y-1 mt-2">
+                <li><strong>Dekomposisi:</strong> Membagi target belajar berdasarkan mata pelajaran (Informatika, Matematika, IPA, Bahasa Indonesia).</li>
+                <li><strong>Pengenalan Pola:</strong> Menyebutkan bahwa pelajaran berhitung (Matematika) butuh waktu latihan sore hari, sedangkan hafalan (Bahasa) lebih efektif di pagi hari.</li>
+                <li><strong>Abstraksi:</strong> Mengabaikan jadwal bermain game online dan memfokuskan jam produktif hanya pada materi ujian esensial.</li>
+                <li><strong>Algoritma:</strong> Membuat jadwal waktu terstruktur: Jam 15.00-16.00 Belajar Bab 1 TIK &rarr; Istirahat 15 Menit &rarr; Jam 16.15-17.15 Latihan Soal.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Sub Bagian 2 -->
+          <div>
+            <h3 class="text-xl font-bold text-indigo-900 border-b-2 border-indigo-200 pb-2 mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-cloud text-indigo-600"></i> 2. Perkembangan Teknologi Informasi dan Komunikasi (TIK)
+            </h3>
+            <p class="mb-3">
+              Perkembangan TIK saat ini didorong oleh integrasi sistem jaringan global (Internet), komputasi awan (Cloud Computing), serta otomatisasi sistem digital. Perkembangan ini memungkinkan manusia bertukar data berkecepatan tinggi dalam hitungan milidetik.
+            </p>
+            
+            <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg my-4">
+              <h4 class="font-bold text-amber-900 text-sm mb-1">Etika &amp; Keamanan Informasi Digital (Cyber Security)</h4>
+              <p class="text-sm text-amber-800">
+                Dalam TIK, penggunaan internet secara bijak (Netiquette) sangat krusial. Siswa harus memahami perlindungan identitas digital, pengamanan kata sandi (Password Strength), serta kewaspadaan terhadap serangan Phishing dan Malware.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: APLIKASI PERKANTORAN -->
+    <section id="content-perkantoran" class="tab-content hidden space-y-6">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center space-x-3 mb-6 border-b border-slate-100 pb-4">
+          <div class="p-3 bg-emerald-100 rounded-xl text-emerald-600"><i class="fa-solid fa-file-invoice text-2xl"></i></div>
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900">Materi 2: Paket Aplikasi Perkantoran (Office Suite)</h2>
+            <p class="text-sm text-slate-500">Pengolah Kata, Pengolah Angka, dan Pembuat Presentasi</p>
+          </div>
+        </div>
+
+        <div class="space-y-10">
+
+          <!-- 1. Pengolah Kata -->
+          <div class="border border-slate-200 rounded-2xl p-6 bg-slate-50/50">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="p-2.5 bg-blue-600 text-white rounded-xl shadow-md"><i class="fa-solid fa-file-word text-xl"></i></span>
+              <h3 class="text-xl font-bold text-slate-900">1. Pengolah Kata (Word Processor)</h3>
+            </div>
+            
+            <div class="space-y-3 text-slate-700 text-sm leading-relaxed">
+              <p><strong>Detail Pengertian:</strong> Perangkat lunak yang dirancang khusus untuk membuat, menyunting, mengedit, memformat, dan mencetak dokumen tertulis berbentuk teks, tabel, dan gambar.</p>
+              <p><strong>Penjelasan Fitur Utama:</strong> Dilengkapi fitur pemformatan huruf (Font Styles), paragraf, pencetakan batas halaman (Margin), daftar berbutir (Bullets &amp; Numbering), Pembuat Tabel, Referensi Otomatis (Daftar Isi), dan <em>Mail Merge</em> (Surat Massal).</p>
+              
+              <div class="bg-white p-4 rounded-xl border border-slate-200 mt-3">
+                <span class="font-bold text-blue-700 block mb-1"><i class="fa-solid fa-circle-info"></i> Contoh Aplikasi &amp; Contoh Penggunaan:</span>
+                <p><strong>Aplikasi Contoh:</strong> Microsoft Word, Google Docs, LibreOffice Writer, WPS Writer.</p>
+                <p class="mt-1"><strong>Contoh Penerapan Nyata:</strong> Membuat Laporan Praktikum Informatika, Surat Undangan Rapat OSIS secara otomatis ke 50 siswa menggunakan fitur <em>Mail Merge</em>.</p>
+              </div>
+              <p class="text-xs text-slate-500 italic">Referensi: ISO/IEC 26300 Open Document Format &amp; Modul Resmi Kemendikbudristek Informatika SMP.</p>
+            </div>
+          </div>
+
+          <!-- 2. Pengolah Angka -->
+          <div class="border border-slate-200 rounded-2xl p-6 bg-slate-50/50">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="p-2.5 bg-emerald-600 text-white rounded-xl shadow-md"><i class="fa-solid fa-file-excel text-xl"></i></span>
+              <h3 class="text-xl font-bold text-slate-900">2. Pengolah Angka (Spreadsheet)</h3>
+            </div>
+            
+            <div class="space-y-3 text-slate-700 text-sm leading-relaxed">
+              <p><strong>Detail Pengertian:</strong> Perangkat lunak lembar kerja berstruktur baris (Row) dan kolom (Column) yang dipergunakan untuk mengolah data kuantitatif, kalkulasi matematis, analisis statistik, hingga visualisasi grafik.</p>
+              <p><strong>Penjelasan Fitur Utama:</strong> Formula &amp; Fungsi Aritmatika (`SUM`, `AVERAGE`, `COUNT`, `MAX`, `MIN`), Logika (`IF`, `AND`, `OR`), Pencarian Data (`VLOOKUP`, `XLOOKUP`), Pivot Table, serta Pembuatan Grafik (Chart Bar/Pie).</p>
+              
+              <div class="bg-white p-4 rounded-xl border border-slate-200 mt-3">
+                <span class="font-bold text-emerald-700 block mb-1"><i class="fa-solid fa-circle-info"></i> Contoh Aplikasi &amp; Contoh Penggunaan:</span>
+                <p><strong>Aplikasi Contoh:</strong> Microsoft Excel, Google Sheets, Numbers, WPS Spreadsheet.</p>
+                <p class="mt-1"><strong>Contoh Penerapan Nyata:</strong> Menghitung Rata-rata Nilai Ujian Siswa Kelas 9 dan menentukan status LULUS / TIDAK LULUS otomatis menggunakan rumus `=IF(AVERAGE(B2:D2)>=75, "LULUS", "REMIDIAL")`.</p>
+              </div>
+              <p class="text-xs text-slate-500 italic">Referensi: Microsoft Office Specialist (MOS) Excel Standard &amp; Buku Kurikulum Merdeka Informatika Class IX.</p>
+            </div>
+          </div>
+
+          <!-- 3. Pembuat Presentasi -->
+          <div class="border border-slate-200 rounded-2xl p-6 bg-slate-50/50">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="p-2.5 bg-orange-600 text-white rounded-xl shadow-md"><i class="fa-solid fa-file-powerpoint text-xl"></i></span>
+              <h3 class="text-xl font-bold text-slate-900">3. Pembuat Presentasi (Presentation Software)</h3>
+            </div>
+            
+            <div class="space-y-3 text-slate-700 text-sm leading-relaxed">
+              <p><strong>Detail Pengertian:</strong> Aplikasi yang dikembangkan untuk menyusun materi tayangan visual per slide guna menyampaikan informasi, ide, atau gagasan di depan audiens secara efektif dan menarik.</p>
+              <p><strong>Penjelasan Fitur Utama:</strong> Layout Slide Template, Master Slide, Animasi Objek, Transisi Slide, Penyisipan Media (Audio, Video, Diagram SmartArt), serta Mode Presenter (Presenter View).</p>
+              
+              <div class="bg-white p-4 rounded-xl border border-slate-200 mt-3">
+                <span class="font-bold text-orange-700 block mb-1"><i class="fa-solid fa-circle-info"></i> Contoh Aplikasi &amp; Contoh Penggunaan:</span>
+                <p><strong>Aplikasi Contoh:</strong> Microsoft PowerPoint, Google Slides, Canva, Keynote.</p>
+                <p class="mt-1"><strong>Contoh Penerapan Nyata:</strong> Membuat media presentasi interaktif kelompok Informatika mengenai "Bahaya Cyberbullying" lengkap dengan grafik dan rekaman video penjelas.</p>
+              </div>
+              <p class="text-xs text-slate-500 italic">Referensi: Multimedia Learning Theory (Mayer, 2014) &amp; Panduan TIK SMP.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: MEMBUAT BLOG SEDERHANA -->
+    <section id="content-blog" class="tab-content hidden space-y-6">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center space-x-3 mb-6 border-b border-slate-100 pb-4">
+          <div class="p-3 bg-purple-100 rounded-xl text-purple-600"><i class="fa-solid fa-blog text-2xl"></i></div>
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900">Materi 3: Panduan Membuat Blog Sederhana dari Awal hingga Selesai</h2>
+            <p class="text-sm text-slate-500">Langkah Praktis Mengembangkan Portofolio Digital Menggunakan Platform Blogger</p>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <p class="text-slate-700 text-sm leading-relaxed">
+            <strong>Blog (Weblog)</strong> adalah situs web berupa media cetakan digital berisi kumpulan postingan tulisan, gambar, atau link yang disusun secara kronologis. Berikut adalah panduan pembuatan blog dari dasar sampai siap diakses publik:
+          </p>
+
+          <div class="relative border-l-2 border-purple-300 ml-4 pl-6 space-y-8">
+            
+            <!-- Langkah 1 -->
+            <div class="relative">
+              <span class="absolute -left-[37px] top-0 w-8 h-8 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-sm shadow-md">1</span>
+              <h3 class="font-bold text-slate-900 text-base">Persiapan Akun &amp; Platform (Blogger.com)</h3>
+              <p class="text-sm text-slate-600 mt-1">Siapkan akun Google (Gmail) aktif. Buka peramban (browser) dan akses situs <code class="bg-slate-100 px-1.5 py-0.5 rounded text-purple-700">www.blogger.com</code>. Klik tombol <strong>"Buat Blog Anda"</strong> lalu login dengan alamat email Anda.</p>
+            </div>
+
+            <!-- Langkah 2 -->
+            <div class="relative">
+              <span class="absolute -left-[37px] top-0 w-8 h-8 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-sm shadow-md">2</span>
+              <h3 class="font-bold text-slate-900 text-base">Menentukan Nama &amp; Alamat URL Blog</h3>
+              <p class="text-sm text-slate-600 mt-1">Masukkan Judul Blog (Contoh: <em>Catatan Belajar Informatika IX-A</em>). Selanjutnya isi alamat domain URL blog yang unik (Contoh: <code class="bg-slate-100 px-1.5 py-0.5 rounded text-purple-700">informatika-ahmad9a.blogspot.com</code>).</p>
+            </div>
+
+            <!-- Langkah 3 -->
+            <div class="relative">
+              <span class="absolute -left-[37px] top-0 w-8 h-8 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-sm shadow-md">3</span>
+              <h3 class="font-bold text-slate-900 text-base">Memilih &amp; Menyesuaikan Tampilan (Tema / Template)</h3>
+              <p class="text-sm text-slate-600 mt-1">Pada dashboard sebelah kiri, klik menu <strong>Tema (Theme)</strong>. Pilih template dengan layout yang responsif, bersih, dan mudah dibaca (misalnya pilihan tema <em>Contempo</em> atau <em>Soho</em>), kemudian klik <strong>Terapkan</strong>.</p>
+            </div>
+
+            <!-- Langkah 4 -->
+            <div class="relative">
+              <span class="absolute -left-[37px] top-0 w-8 h-8 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center text-sm shadow-md">4</span>
+              <h3 class="font-bold text-slate-900 text-base">Menulis &amp; Mempublikasikan Artikel Pertama</h3>
+              <p class="text-sm text-slate-600 mt-1">Klik menu <strong>Postingan Baru (New Post)</strong>. Isi judul artikel (Contoh: <em>Pengalaman Belajar Berpikir Komputasional</em>). Ketik isi materi, tambahkan gambar ilustrasi pendukung, dan berikan label kategori. Jika sudah selesai, klik tombol **Publikasikan**.</p>
+            </div>
+
+          </div>
+
+          <!-- Box Contoh Pengerjaan -->
+          <div class="bg-purple-50 border border-purple-200 rounded-2xl p-5 mt-6">
+            <h4 class="font-bold text-purple-900 text-sm flex items-center gap-2 mb-2">
+              <i class="fa-solid fa-desktop"></i> Contoh Tampilan Hasil Pengerjaan Blog Sederhana:
+            </h4>
+            <div class="bg-white p-4 rounded-xl border border-purple-200 text-xs font-mono text-slate-700 space-y-2">
+              <div class="border-b border-slate-200 pb-2">
+                <p class="text-purple-700 font-bold">[URL]: https://informatika-ahmad9a.blogspot.com</p>
+                <p class="text-lg font-bold font-sans text-slate-900 mt-1">BLOG INFORMATIKA KELAS 9 - AHMAD HUZAIFAH</p>
+              </div>
+              <div class="py-2">
+                <p class="font-sans font-bold text-sm text-slate-800">Judul Artikel: Mengenal Dampak Positif &amp; Negatif AI</p>
+                <p class="font-sans text-slate-600 mt-1">Diposting pada: 12 Oktober 2026 | Kategori: Tugas TIK</p>
+                <p class="font-sans text-slate-700 mt-2">Kecerdasan buatan (Artificial Intelligence) terus berkembang pesat. Sebagai siswa kelas 9, kita harus memanfaatkan AI secara bijak...</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: MEMBUAT VIDEO BLOG (VLOG) -->
+    <section id="content-vlog" class="tab-content hidden space-y-6">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center space-x-3 mb-6 border-b border-slate-100 pb-4">
+          <div class="p-3 bg-rose-100 rounded-xl text-rose-600"><i class="fa-solid fa-video text-2xl"></i></div>
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900">Materi 4: Tahapan Pembuatan Video Blog (Vlog)</h2>
+            <p class="text-sm text-slate-500">5 Tahapan Utama dalam Memproduksi Konten Video Edukasi yang Menarik</p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-1 gap-6">
+
+          <!-- 1. Rencana -->
+          <div class="p-5 border border-slate-200 rounded-xl bg-slate-50 hover:border-rose-300 transition">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="bg-rose-600 text-white w-7 h-7 rounded-full flex items-center justify-center font-bold text-sm">1</span>
+              <h3 class="font-bold text-slate-900 text-lg">Membuat Rencana (Pre-Production)</h3>
+            </div>
+            <p class="text-sm text-slate-600"><strong>Penjelasan:</strong> Tahapan merumuskan ide cerita, menentukan tujuan vlogging, audiens sasaran, menyusun Naskah (Script), serta membuat papan cerita (Storyboard).</p>
+            <p class="text-xs bg-white p-2.5 rounded-lg border border-slate-200 mt-2 text-rose-900"><strong>Contoh Sederhana:</strong> Menentukan topik "Tutorial Membuat Tabel Excel dalam 3 Menit" dan menulis poin pembicaraan dari pembukaan, isi, hingga salam penutup.</p>
+          </div>
+
+          <!-- 2. Persiapan -->
+          <div class="p-5 border border-slate-200 rounded-xl bg-slate-50 hover:border-rose-300 transition">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="bg-rose-600 text-white w-7 h-7 rounded-full flex items-center justify-center font-bold text-sm">2</span>
+              <h3 class="font-bold text-slate-900 text-lg">Persiapan Perlengkapan (Equipment Setup)</h3>
+            </div>
+            <p class="text-sm text-slate-600"><strong>Penjelasan:</strong> Mempersiapkan perangkat keras pendukung seperti Smartphone/Kamera, Tripod penstabil, Mikrofon klip (Clip-on) agar suara jernih, serta pencahayaan (Ring Light/Cahaya Alami).</p>
+            <p class="text-xs bg-white p-2.5 rounded-lg border border-slate-200 mt-2 text-rose-900"><strong>Contoh Sederhana:</strong> Memasang Smartphone pada tripod meja, menggunakan headset handsfree sebagai mic pengganti, dan memilih tempat dekat jendela yang terang.</p>
+          </div>
+
+          <!-- 3. Tampilan & Rekam -->
+          <div class="p-5 border border-slate-200 rounded-xl bg-slate-50 hover:border-rose-300 transition">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="bg-rose-600 text-white w-7 h-7 rounded-full flex items-center justify-center font-bold text-sm">3</span>
+              <h3 class="font-bold text-slate-900 text-lg">Tampilan dan Rekam (Production)</h3>
+            </div>
+            <p class="text-sm text-slate-600"><strong>Penjelasan:</strong> Proses perekaman visual dan audio. Vlogger harus memperhatikan gestur tubuh yang percaya diri, artikulasi suara jelas, kontak mata ke lensa kamera, serta pencahayaan memadai.</p>
+            <p class="text-xs bg-white p-2.5 rounded-lg border border-slate-200 mt-2 text-rose-900"><strong>Contoh Sederhana:</strong> Menatap ke arah lensa kamera (bukan layar HP), menyapa penonton "Halo teman-teman kelas 9!", dan merekam layar komputer saat mempraktikkan rumus Excel.</p>
+          </div>
+
+          <!-- 4. Sunting -->
+          <div class="p-5 border border-slate-200 rounded-xl bg-slate-50 hover:border-rose-300 transition">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="bg-rose-600 text-white w-7 h-7 rounded-full flex items-center justify-center font-bold text-sm">4</span>
+              <h3 class="font-bold text-slate-900 text-lg">Sunting Video (Post-Production / Editing)</h3>
+            </div>
+            <p class="text-sm text-slate-600"><strong>Penjelasan:</strong> Mengolah potongan video menggunakan aplikasi pengeditan. Memotong bagian salah (Trim/Cut), menambahkan musik latar (Backsound bebass hak cipta), teks teks (Subtitle), dan efek transisi.</p>
+            <p class="text-xs bg-white p-2.5 rounded-lg border border-slate-200 mt-2 text-rose-900"><strong>Contoh Sederhana:</strong> Mengedit video memakai CapCut / Kinemaster, memotong jeda diam yang terlalu lama, serta menambahkan teks "Rumus =SUM(A1:A10)".</p>
+          </div>
+
+          <!-- 5. Bagikan -->
+          <div class="p-5 border border-slate-200 rounded-xl bg-slate-50 hover:border-rose-300 transition">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="bg-rose-600 text-white w-7 h-7 rounded-full flex items-center justify-center font-bold text-sm">5</span>
+              <h3 class="font-bold text-slate-900 text-lg">Bagikan (Publishing &amp; Distribution)</h3>
+            </div>
+            p <p class="text-sm text-slate-600"><strong>Penjelasan:</strong> Mengekspor video ke format MP4 (Resolution 1080p), lalu mengunggahnya ke platform jejaring sosial seperti YouTube, TikTok, atau mengutipnya ke dalam postingan Blog.</p>
+            <p class="text-xs bg-white p-2.5 rounded-lg border border-slate-200 mt-2 text-rose-900"><strong>Contoh Sederhana:</strong> Mengunggah video ke YouTube dengan visibilitas "Unlisted/Public", lalu membagikan tautannya ke Google Classroom guru.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 6: EVALUASI & SERTIFIKAT -->
+    <section id="content-evaluasi" class="tab-content hidden space-y-8">
+      
+      <!-- FORM BIODATA SISWA & FOTO SELFIE -->
+      <div id="biodata-card" class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center space-x-3 mb-6 border-b border-slate-100 pb-4">
+          <div class="p-3 bg-amber-100 rounded-xl text-amber-600"><i class="fa-solid fa-address-card text-2xl"></i></div>
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900">Formulir Identitas Peserta Ujian</h2>
+            <p class="text-sm text-slate-500">Isi data diri dengan benar sebelum memulai Evaluasi 50 Soal untuk Penerbitan Sertifikat</p>
+          </div>
+        </div>
+
+        <form id="student-form" class="grid md:grid-cols-2 gap-6" onsubmit="event.preventDefault();">
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Nama Lengkap Siswa *</label>
+              <input type="text" id="student-name" required placeholder="Contoh: Muhammad Bintang" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 text-sm outline-none">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Tempat, Tanggal Lahir *</label>
+              <input type="text" id="student-ttl" required placeholder="Contoh: Jakarta, 15 Mei 2011" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 text-sm outline-none">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Nama Sekolah *</label>
+              <input type="text" id="student-school" required placeholder="Contoh: SMP Negeri 1 Jakarta" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-500 focus:border-sky-500 text-sm outline-none">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Kelas *</label>
+              <input type="text" id="student-class" value="IX (Sembilan)" readonly class="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-100 text-slate-600 text-sm outline-none font-semibold">
+            </div>
+          </div>
+
+          <!-- FITUR FOTO SELFIE / UPLOAD -->
+          <div class="flex flex-col items-center justify-center p-4 bg-slate-50 border-2 border-dashed border-slate-300 rounded-2xl">
+            <span class="block text-xs font-bold uppercase text-slate-700 mb-3">Foto Selfie Peserta *</span>
+            
+            <div class="relative w-40 h-40 rounded-full overflow-hidden bg-slate-200 border-4 border-white shadow-md flex items-center justify-center mb-3">
+              <img id="photo-preview" src="" class="hidden w-full h-full object-cover">
+              <video id="webcam-video" autoplay playsinline class="hidden w-full h-full object-cover"></video>
+              <i id="photo-placeholder-icon" class="fa-solid fa-user text-5xl text-slate-400"></i>
+            </div>
+
+            <canvas id="webcam-canvas" class="hidden"></canvas>
+
+            <div class="flex flex-wrap gap-2 justify-center">
+              <button type="button" onclick="startWebcam()" class="px-3 py-1.5 bg-sky-600 hover:bg-sky-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1 shadow-xs">
+                <i class="fa-solid fa-camera"></i> Ambil via Kamera
+              </button>
+              <button type="button" id="btn-capture" onclick="capturePhoto()" class="hidden px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-semibold flex items-center gap-1 shadow-xs">
+                <i class="fa-solid fa-circle"></i> Jepret Foto
+              </button>
+              <label class="px-3 py-1.5 bg-slate-700 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold flex items-center gap-1 cursor-pointer shadow-xs">
+                <i class="fa-solid fa-upload"></i> Unggah Berkas
+                <input type="file" id="photo-upload" accept="image/*" onchange="handleFileUpload(event)" class="hidden">
+              </label>
+            </div>
+            <p class="text-[11px] text-slate-500 mt-2 text-center">Foto akan dicetak pada sertifikat kelulusan digital.</p>
+          </div>
+        </form>
+      </div>
+
+      <!-- LEMBAR SOAL EVALUASI 50 SOAL -->
+      <div id="quiz-card" class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center justify-between mb-6 border-b border-slate-100 pb-4">
+          <div>
+            <h3 class="text-xl font-bold text-slate-900">Lembar Ujian Evaluasi Informatika (50 Soal)</h3>
+            <p class="text-xs text-slate-500">Soal 1–35: Pilihan Ganda | Soal 36–50: Isian Singkat Presisi</p>
+          </div>
+          <span class="bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1.5 rounded-full">35 PG + 15 ISIAN</span>
+        </div>
+
+        <form id="quiz-form" class="space-y-8">
+          
+          <!-- SEKSI A: PILIHAN GANDA (1-35) -->
+          <div class="space-y-6">
+            <h4 class="font-bold text-slate-800 border-b border-slate-200 pb-2 text-base flex items-center gap-2">
+              <i class="fa-solid fa-list-check text-sky-600"></i> Bagian A: Soal Pilihan Ganda (1 - 35)
+            </h4>
+            
+            <div id="pg-container" class="space-y-6">
+              <!-- Soal PG diinjeksi via JS untuk kerapian -->
+            </div>
+          </div>
+
+          <!-- SEKSI B: ISIAN SINGKAT (36-50) -->
+          <div class="space-y-6 pt-6 border-t-2 border-slate-200">
+            <h4 class="font-bold text-slate-800 border-b border-slate-200 pb-2 text-base flex items-center gap-2">
+              <i class="fa-solid fa-pen-to-square text-emerald-600"></i> Bagian B: Soal Isian Singkat (36 - 50)
+            </h4>
+            
+            <div id="isian-container" class="space-y-6">
+              <!-- Soal Isian diinjeksi via JS -->
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-slate-200 flex justify-end">
+            <button type="button" onclick="submitQuiz()" class="px-8 py-3 bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-700 hover:to-indigo-700 text-white font-bold rounded-xl shadow-lg transition-all transform active:scale-95 flex items-center gap-2 text-base">
+              <i class="fa-solid fa-paper-plane"></i> Kirim Jawaban &amp; Terbitkan Sertifikat
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- TEMPAT SERTIFIKAT DIGITAL -->
+      <div id="certificate-result" class="hidden space-y-6">
+        <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 text-center">
+          <i class="fa-solid fa-circle-check text-5xl text-emerald-600 mb-2"></i>
+          <h3 class="text-2xl font-bold text-emerald-900">Ujian Evaluasi Selesai!</h3>
+          <p class="text-slate-600 text-sm mt-1">Sertifikat Hasil Belajar Anda Telah Berhasil Diterbitkan Secara Otomatis.</p>
+          <div class="mt-4 flex justify-center gap-4">
+            <button onclick="window.print()" class="px-6 py-2.5 bg-slate-900 text-white rounded-xl font-bold text-sm hover:bg-slate-800 flex items-center gap-2 shadow-md">
+              <i class="fa-solid fa-print"></i> Cetak / Download Sertifikat (PDF)
+            </button>
+          </div>
+        </div>
+
+        <!-- PRINTSCREEN / SERTIFIKAT TAMPILAN -->
+        <div id="printable-certificate" class="bg-white border-8 border-indigo-900 p-8 sm:p-12 rounded-3xl shadow-2xl relative overflow-hidden my-6">
+          <div class="border-2 border-amber-500 p-6 sm:p-8 rounded-2xl relative z-10 bg-gradient-to-b from-amber-50/30 to-white">
+            
+            <!-- Header Sertifikat -->
+            <div class="text-center space-y-2 border-b-2 border-slate-200 pb-6">
+              <p class="text-xs font-bold uppercase tracking-widest text-amber-700">Media Pembelajaran Interaktif Informatika</p>
+              <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">SERTIFIKAT KELULUSAN EVALUASI</h1>
+              <p class="text-xs text-slate-500 font-mono">Nomor Sertifikat: INF9/EVAL/2026/<span id="cert-id">8921</span></p>
+            </div>
+
+            <!-- Isi Sertifikat -->
+            <div class="my-8 text-center space-y-4">
+              <p class="text-sm text-slate-600">Diberikan secara resmi kepada siswa:</p>
+              
+              <div class="flex flex-col sm:flex-row items-center justify-center gap-6 my-4">
+                <img id="cert-photo" src="" class="w-28 h-28 rounded-full border-4 border-indigo-900 object-cover shadow-md">
+                <div class="text-center sm:text-left">
+                  <h2 id="cert-name" class="text-2xl sm:text-3xl font-extrabold text-indigo-950 underline underline-offset-4">NAMA SISWA</h2>
+                  <p id="cert-ttl" class="text-sm text-slate-600 mt-1">Tempat, Tanggal Lahir</p>
+                  <p id="cert-school" class="text-sm font-semibold text-slate-800">Nama Sekolah</p>
+                  <p id="cert-class" class="text-xs text-slate-500">Kelas: IX (Sembilan)</p>
+                </div>
+              </div>
+
+              <p class="text-sm text-slate-700 max-w-2xl mx-auto leading-relaxed">
+                Telah menyelesaikan Ujian Evaluasi Pembelajaran Terpadu Mata Pelajaran <strong>INFORMATIKA</strong> Topik <em>Berpikir Komputasional, Aplikasi Perkantoran, Blog, dan Vlog</em> dengan pencapaian nilai sebagai berikut:
+              </p>
+
+              <!-- Nilai Box -->
+              <div class="inline-flex items-center gap-6 bg-slate-900 text-white px-8 py-4 rounded-2xl shadow-lg my-2">
+                <div>
+                  <p class="text-[10px] uppercase tracking-wider text-slate-400">Skor Akhir</p>
+                  <p id="cert-score" class="text-4xl font-black text-amber-400">0</p>
+                </div>
+                <div class="h-8 w-px bg-slate-700"></div>
+                <div>
+                  <p class="text-[10px] uppercase tracking-wider text-slate-400">Predikat</p>
+                  <p id="cert-predicate" class="text-xl font-bold text-emerald-400">SANGAT BAIK</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer Tanda Tangan -->
+            <div class="mt-12 flex justify-between items-end text-xs text-slate-700 pt-6 border-t border-slate-200">
+              <div class="text-left">
+                <p>Tanggal Diterbitkan: <span id="cert-date">21 Oktober 2026</span></p>
+                <p class="font-bold mt-1">Status: TERVERIFIKASI SISTEM</p>
+              </div>
+
+              <div class="text-center">
+                <p class="mb-8">Guru Pengampu Mata Pelajaran</p>
+                <p class="font-bold text-sm text-slate-900 underline">Ahmad Hudzaifah, S.Kom</p>
+                <p class="text-[10px] text-slate-500">NIP. 19880412 201503 1 004</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER SEKSI -->
+  <footer class="bg-slate-900 text-slate-400 text-xs py-6 border-t border-slate-800 mt-12">
+    <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+      <p class="font-semibold text-slate-300">Media Pembelajaran Interaktif Informatika SMP Kelas 9 &copy; 2026</p>
+      <p>Dikembangkan untuk Aktivitas Belajar Siswa | Guru Pengampu: Ahmad Hudzaifah, S.Kom</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIKA APLIKASI -->
+  <script>
+    // DATA 50 SOAL EVALUASI LENGKAP & PRESISI
+    const pgData = [
+      { q: "Kemampuan memecahkan masalah kompleks menjadi bagian-bagian kecil yang sederhana disebut...", o: ["A. Abstraksi", "B. Dekomposisi", "C. Algoritma", "D. Pengenalan Pola"], a: 1 },
+      { q: "Proses mengabaikan detail-detail yang tidak relevan agar fokus pada solusi inti disebut...", o: ["A. Dekomposisi", "B. Abstraksi", "C. Algoritma", "D. Pemrograman"], a: 1 },
+      { q: "Urutan langkah-langkah logis dan terstruktur untuk menyelesaikan masalah disebut...", o: ["A. Algoritma", "B. Variabel", "C. Pseudocode", "D. Diagram"], a: 0 },
+      { q: "Aplikasi yang digunakan khusus untuk mengolah data teks dan pembuatan dokumen cetak adalah...", o: ["A. Pengolah Angka", "B. Pembuat Presentasi", "C. Pengolah Kata", "D. Basis Data"], a: 2 },
+      { q: "Fitur pada pengolah kata yang digunakan untuk membuat surat massal secara otomatis disebut...", o: ["A. Mail Merge", "B. Page Setup", "C. WordArt", "D. Table of Content"], a: 0 },
+      { q: "Fungsi matematika pada Excel yang digunakan untuk menghitung total jumlah data adalah...", o: ["A. AVERAGE", "B. COUNT", "C. SUM", "D. MAX"], a: 2 },
+      { q: "Fungsi spreadsheet yang digunakan untuk mencari rata-rata angka adalah...", o: ["A. AVERAGE", "B. SUM", "C. MIN", "D. IF"], a: 0 },
+      { q: "Rumus logika yang digunakan untuk mengevaluasi kondisi BENAR atau SALAH pada Excel adalah...", o: ["A. VLOOKUP", "B. IF", "C. SUM", "D. CONCATENATE"], a: 1 },
+      { q: "Aplikasi pembuat presentasi yang dikembangkan oleh Microsoft adalah...", o: ["A. Word", "B. Excel", "C. PowerPoint", "D. Access"], a: 2 },
+      { q: "Istilah pergerakan perpindahan visual dari satu slide ke slide berikutnya pada presentasi disebut...", o: ["A. Animation", "B. Transition", "C. Layout", "D. Master Slide"], a: 1 },
+      { q: "Situs penyedia layanan pembuat blog gratis milik Google adalah...", o: ["A. WordPress.org", "B. Blogger.com", "C. Medium", "D. Wix"], a: 1 },
+      { q: "Estetika visual tampilan blog yang menentukan tata letak dan desain warna disebut...", o: ["A. Domain", "B. Template / Tema", "C. Hosting", "D. Plugin"], a: 1 },
+      { q: "Alamat unik di internet yang digunakan untuk mengakses halaman blog disebut...", o: ["A. URL / Domain", "B. IP Address", "C. HTML", "D. Server"], a: 0 },
+      { q: "Singkatan dari istilah Video Blog adalah...", o: ["A. Vblog", "B. Vlog", "C. Vidlog", "D. Weblog"], a: 1 },
+      { q: "Tahapan pertama dalam pembuatan video blog adalah...", o: ["A. Sunting", "B. Membuat Rencana", "C. Rekam", "D. Bagikan"], a: 1 },
+      { q: "Naskah adegan dan panduan visual awal sebelum perekaman video dilakukan dinamakan...", o: ["A. Script & Storyboard", "B. Timeline", "C. Editing", "D. Rendering"], a: 0 },
+      { q: "Perangkat pencahayaan melingkar yang sering digunakan vlogger untuk wajah adalah...", o: ["A. Flashlight", "B. Ring Light", "C. Softbox", "D. Reflector"], a: 1 },
+      { q: "Proses pemotongan bagian video yang salah saat pengeditan dinamakan...", o: ["A. Rendering", "B. Trimming / Cut", "C. Exporting", "D. Recording"], a: 1 },
+      { q: "Aplikasi pengedit video populer di smartphone yang praktis adalah...", o: ["A. Word", "B. CapCut", "C. Excel", "D. Chrome"], a: 1 },
+      { q: "Tahap akhir setelah pengeditan vlog selesai sebelum dinikmati penonton adalah...", o: ["A. Persiapan", "B. Bagikan / Publishing", "C. Syuting", "D. Draf"], a: 1 },
+      { q: "Platform berbagai video terbesar di dunia yang dipopulerkan untuk vlogging adalah...", o: ["A. YouTube", "B. Facebook", "C. WhatsApp", "D. LinkedIn"], a: 0 },
+      { q: "Etika dan sopan santun dalam berkomunikasi melalui media digital di internet disebut...", o: ["A. Netiquette", "B. Etika Cyber", "C. Protocol", "D. Hacking"], a: 0 },
+      { q: "Metode mengamankan data rahasia dengan mengubah teks asli menjadi kode acak dinamakan...", o: ["A. Enkripsi", "B. Dekripsi", "C. Phishing", "D. Spam"], a: 0 },
+      { q: "Kejahatan pencurian akun melalui link atau situs palsu yang menyerupai aslinya dinamakan...", o: ["A. Phishing", "B. Malware", "C. Firewall", "D. Trojan"], a: 0 },
+      { q: "Format file standar untuk dokumen cetak siap baca tanpa khawatir berubah layout adalah...", o: ["A. DOCX", "B. PDF", "C. XLSX", "D. PPTX"], a: 1 },
+      { q: "Pertemuan sel kolom dan baris pada aplikasi spreadsheet dinamakan...", o: ["A. Sheet", "B. Cell", "C. Range", "D. Row"], a: 1 },
+      { q: "Kumpulan dari beberapa sel pada spreadsheet dinamakan...", o: ["A. Range", "B. Column", "C. Row", "D. Grid"], a: 0 },
+      { q: "Proses menggabungkan beberapa sel menjadi satu sel tunggal pada Excel disebut...", o: ["A. Wrap Text", "B. Merge & Center", "C. AutoSum", "D. Sort"], a: 1 },
+      { q: "Perangkat keras pendukung untuk menstabilkan pegangan HP agar tidak goyang saat syuting adalah...", o: ["A. Microphone", "B. Tripod / Gimbal", "C. Lighting", "D. Memory"], a: 1 },
+      { q: "Label kategorisasi pada postingan blog untuk mempermudah pencarian artikel disebut...", o: ["A. Tag / Label", "B. Header", "C. Footer", "D. Sidebar"], a: 0 },
+      { q: "Jenis format audio visual standar hasil ekspor video berkualitashigh definition adalah...", o: ["A. MP3", "B. MP4", "C. PNG", "D. GIF"], a: 1 },
+      { q: "Layanan penyimpanan data berbasis internet cloud milik Google adalah...", o: ["A. Google Drive", "B. Google Docs", "C. Google Play", "D. Gmail"], a: 0 },
+      { q: "Fitur presentasi yang digunakan untuk memberikan animasi efek masuk objek dinamakan...", o: ["A. Entrance Animation", "B. Exit Animation", "C. Emphasis Animation", "D. Motion Path"], a: 0 },
+      { q: "Tindakan menggunakan karya orang lain tanpa izin atau pencantuman sumber disebut...", o: ["A. Plagiarisme", "B. Sitasi", "C. Hak Cipta", "D. Lisensi"], a: 0 },
+      { q: "Elemen pilar Berpikir Komputasional untuk merancang pola penyelesaian sistematis adalah...", o: ["A. Algoritma", "B. Komputasi", "C. Logika", "D. Pseudocode"], a: 0 }
+    ];
+
+    const isianData = [
+      { q: "Sebutkan nama 4 pilar utama Berpikir Komputasional!", a: ["dekomposisi, pengenalan pola, abstraksi, algoritma", "dekomposisi, pola, abstraksi, algoritma"] },
+      { q: "Aplikasi Microsoft yang dipergunakan untuk mengolah angka dan grafik adalah...", a: ["microsoft excel", "excel"] },
+      { q: "Sebutkan nama aplikasi pengolah kata garapan Microsoft!", a: ["microsoft word", "word"] },
+      { q: "Simbol awal yang WAJIB diketik saat menuliskan formula rumus di Microsoft Excel adalah...", a: ["=", "sama dengan"] },
+      { q: "Fungsi Excel untuk mencari nilai tertinggi dalam suatu range data adalah...", a: ["max"] },
+      { q: "Fungsi Excel untuk mencari nilai terendah dalam suatu range data adalah...", a: ["min"] },
+      { q: "Fitur Word untuk mencetak surat massal dengan data penerima berbeda dinamakan...", a: ["mail merge"] },
+      { q: "Situs/platform pembuatan blog gratis populer dari Google adalah...", a: ["blogger", "blogger.com"] },
+      { q: "Singkatan dari istilah Video Blog adalah...", a: ["vlog"] },
+      { q: "Tahapan pertama dalam proses pembuatan vlog adalah...", a: ["membuat rencana", "rencana", "perencanaan"] },
+      { q: "Tahapan ke-4 dalam pembuatan vlog setelah perekaman gambar dilakukan adalah...", a: ["sunting", "menyunting", "editing"] },
+      { q: "Perangkat pendukung penyerap suara jernih kecil yang dikaitkan di baju vlogger dinamakan...", a: ["clip on", "microfon", "mic", "microphone"] },
+      { q: "Perilaku kejahatan pencurian kata sandi lewat situs/link jebakan dinamakan...", a: ["phishing"] },
+      { q: "Istilah untuk hak paten kepemilikan atas konten karya digital dinamakan...", a: ["hak cipta", "copyright"] },
+      { q: "Nama guru pengampu mata pelajaran Informatika Kelas 9 di media pembelajaran ini adalah...", a: ["ahmad hudzaifah, s.kom", "ahmad hudzaifah"] }
+    ];
+
+    // INTI LOGIKA NAVIGASI TAB
+    function switchTab(tabKey) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('bg-sky-600', 'text-white', 'font-semibold', 'shadow-md');
+        btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+      });
+
+      document.getElementById('content-' + tabKey).classList.remove('hidden');
+      const activeBtn = document.getElementById('tab-' + tabKey);
+      activeBtn.classList.add('bg-sky-600', 'text-white', 'font-semibold', 'shadow-md');
+      activeBtn.classList.remove('text-slate-600', 'hover:bg-slate-100');
+
+      window.scrollTo({ top: 100, behavior: 'smooth' });
+    }
+
+    // INJEKSI SOAL KE HTML
+    function renderQuiz() {
+      const pgContainer = document.getElementById('pg-container');
+      pgContainer.innerHTML = '';
+      pgData.forEach((item, index) => {
+        const qNum = index + 1;
+        let optionsHtml = '';
+        item.o.forEach((opt, optIndex) => {
+          optionsHtml += `
+            <label class="flex items-center gap-2 p-2.5 rounded-lg border border-slate-200 hover:bg-sky-50/50 cursor-pointer text-xs sm:text-sm text-slate-700 transition">
+              <input type="radio" name="pg_${index}" value="${optIndex}" class="text-sky-600 focus:ring-sky-500">
+              <span>${opt}</span>
+            </label>
+          `;
+        });
+
+        pgContainer.innerHTML += `
+          <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3">
+            <p class="font-semibold text-slate-900 text-sm"><span class="bg-sky-100 text-sky-800 text-xs px-2 py-0.5 rounded font-bold mr-1">${qNum}</span> ${item.q}</p>
+            <div class="grid sm:grid-cols-2 gap-2">
+              ${optionsHtml}
+            </div>
+          </div>
+        `;
+      });
+
+      const isianContainer = document.getElementById('isian-container');
+      isianContainer.innerHTML = '';
+      isianData.forEach((item, index) => {
+        const qNum = index + 36;
+        isianContainer.innerHTML += `
+          <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+            <p class="font-semibold text-slate-900 text-sm"><span class="bg-emerald-100 text-emerald-800 text-xs px-2 py-0.5 rounded font-bold mr-1">${qNum}</span> ${item.q}</p>
+            <input type="text" id="isian_${index}" placeholder="Ketik jawaban singkat Anda di sini..." class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs sm:text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+          </div>
+        `;
+      });
+    }
+
+    // KAMERA WEB REALTIME & FILE UPLOAD
+    let webcamStream = null;
+
+    function startWebcam() {
+      const video = document.getElementById('webcam-video');
+      const placeholder = document.getElementById('photo-placeholder-icon');
+      const photoPreview = document.getElementById('photo-preview');
+      const btnCapture = document.getElementById('btn-capture');
+
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+          webcamStream = stream;
+          video.srcObject = stream;
+          video.classList.remove('hidden');
+          placeholder.classList.add('hidden');
+          photoPreview.classList.add('hidden');
+          btnCapture.classList.remove('hidden');
+        })
+        .catch(err => {
+          alert("Kamera tidak dapat diakses atau diizinkan. Silakan gunakan tombol Unggah Berkas.");
+        });
+    }
+
+    function capturePhoto() {
+      const video = document.getElementById('webcam-video');
+      const canvas = document.getElementById('webcam-canvas');
+      const photoPreview = document.getElementById('photo-preview');
+      const btnCapture = document.getElementById('btn-capture');
+
+      canvas.width = video.videoWidth || 300;
+      canvas.height = video.videoHeight || 300;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      const dataUrl = canvas.toDataURL('image/png');
+      photoPreview.src = dataUrl;
+      photoPreview.classList.remove('hidden');
+      video.classList.add('hidden');
+      btnCapture.classList.add('hidden');
+
+      if (webcamStream) {
+        webcamStream.getTracks().forEach(track => track.stop());
+      }
+    }
+
+    function handleFileUpload(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          const photoPreview = document.getElementById('photo-preview');
+          const placeholder = document.getElementById('photo-placeholder-icon');
+          const video = document.getElementById('webcam-video');
+
+          photoPreview.src = evt.target.result;
+          photoPreview.classList.remove('hidden');
+          placeholder.classList.add('hidden');
+          video.classList.add('hidden');
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // SUBMIT KUIS & GENERATE SERTIFIKAT
+    function submitQuiz() {
+      // Validasi Biodata
+      const name = document.getElementById('student-name').value.trim();
+      const ttl = document.getElementById('student-ttl').value.trim();
+      const school = document.getElementById('student-school').value.trim();
+      const cls = document.getElementById('student-class').value.trim();
+      const photoSrc = document.getElementById('photo-preview').src;
+
+      if (!name || !ttl || !school) {
+        alert("Harap lengkapi semua data formulir siswa (Nama, TTL, dan Nama Sekolah) terlebih dahulu!");
+        document.getElementById('biodata-card').scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+
+      if (!photoSrc || photoSrc.endsWith('#') || document.getElementById('photo-preview').classList.contains('hidden')) {
+        alert("Harap ambil foto selfie via kamera atau unggah foto terlebih dahulu!");
+        document.getElementById('biodata-card').scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+
+      // Hitung Skor
+      let correctPg = 0;
+      pgData.forEach((item, index) => {
+        const selected = document.querySelector(`input[name="pg_${index}"]:checked`);
+        if (selected && parseInt(selected.value) === item.a) {
+          correctPg++;
+        }
+      });
+
+      let correctIsian = 0;
+      isianData.forEach((item, index) => {
+        const inputVal = (document.getElementById(`isian_${index}`).value || "").trim().toLowerCase();
+        if (item.a.some(ans => inputVal.includes(ans.toLowerCase()))) {
+          correctIsian++;
+        }
+      });
+
+      // Skor total (PG bobot 2 point = 70, Isian bobot 2 point = 30 -> Total 100)
+      const totalScore = (correctPg * 2) + Math.round(correctIsian * 2);
+
+      // Tentukan Predikat
+      let predicate = "CUKUP";
+      if (totalScore >= 90) predicate = "SANGAT BAIK (A+)";
+      else if (totalScore >= 80) predicate = "BAIK (A)";
+      else if (totalScore >= 70) predicate = "CUKUP BAIK (B)";
+      else predicate = "PERLU BUKTI BELAJAR (C)";
+
+      // Isi Sertifikat
+      document.getElementById('cert-name').innerText = name.toUpperCase();
+      document.getElementById('cert-ttl').innerText = ttl;
+      document.getElementById('cert-school').innerText = school;
+      document.getElementById('cert-class').innerText = "Kelas: " + cls;
+      document.getElementById('cert-photo').src = photoSrc;
+      document.getElementById('cert-score').innerText = totalScore;
+      document.getElementById('cert-predicate').innerText = predicate;
+      document.getElementById('cert-id').innerText = Math.floor(1000 + Math.random() * 9000);
+      
+      const today = new Date();
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById('cert-date').innerText = today.toLocaleDateString('id-ID', options);
+
+      // Tampilkan Hasil
+      document.getElementById('quiz-card').classList.add('hidden');
+      document.getElementById('biodata-card').classList.add('hidden');
+      document.getElementById('certificate-result').classList.remove('hidden');
+      
+      document.getElementById('certificate-result').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // INISIALISASI SAAT HALAMAN DIMUAT
+    window.addEventListener('DOMContentLoaded', () => {
+      renderQuiz();
+    });
+  </script>
+</body>
+</html>
